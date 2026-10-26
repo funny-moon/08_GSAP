@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gsap01</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      a {
+        color: #fff;
+        text-decoration: none;
+      }
+      body {
+        color: #555555;
+        font-family: "NexonLv1Gothic";
+        font-weight: 300;
+        background-color: #97c1b2;
+      }
+      #title {
+        position: fixed;
+        left: 20px;
+        top: 20px;
+        z-index: 1000;
+      }
+      #title h1 {
+        font-size: 30px;
+      }
+
+      /* cont */
+      #cont {
+        overflow: hidden;
+      }
+      .item {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .item:nth-child(2n) {
+        background-color: #77978c;
+      }
+      .item_num {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        font-size: 5vw;
+        line-height: 1;
+      }
+      .item_img {
+        width: 10vw;
+        height: 10vw;
+        background-color: #fff;
+        background-size: cover;
+        background-position: center;
+      }
+      .item:nth-child(1) .item_img {
+        background-image: url(img/img07.jpg);
+      }
+      .item:nth-child(2) .item_img {
+        background-image: url(img/img08.jpg);
+      }
+      .item:nth-child(3) .item_img {
+        background-image: url(img/img09.jpg);
+      }
+      .item:nth-child(4) .item_img {
+        background-image: url(img/img04.jpg);
+      }
+      .item:nth-child(5) .item_img {
+        background-image: url(img/img01.jpg);
+      }
+      .item:nth-child(6) .item_img {
+        background-image: url(img/img10.jpg);
+      }
+      .item:nth-child(7) .item_img {
+        background-image: url(img/img11.jpg);
+      }
+      .item:nth-child(8) .item_img {
+        background-image: url(img/img12.jpg);
+      }
+      .item:nth-child(9) .item_img {
+        background-image: url(img/img13.jpg);
+      }
+      .item_img.active {
+        filter: grayscale(100%);
+      }
+    </style>
+  </head>
+  <body>
+    <header id="title">
+      <h1>GSAP01</h1>
+    </header>
+    <!-- //title  -->
+
+    <main id="cont">
+      <section id="section1" class="item">
+        <span class="item_num">01</span>
+        <div class="item_img"></div>
+      </section>
+      <!-- //section1 -->
+
+      <section id="section2" class="item">
+        <span class="item_num">02</span>
+        <div class="item_img"></div>
+      </section>
+      <!-- //section2 -->
+
+      <section id="section3" class="item">
+        <span class="item_num">03</span>
+        <div class="item_img"></div>
+      </section>
+      <!-- //section3 -->
+
+      <section id="section4" class="item">
+        <span class="item_num">04</span>
+        <div class="item_img"></div>
+      </section>
+      <!-- //section4 -->
+
+      <section id="section5" class="item">
+        <span class="item_num">05</span>
+        <div class="item_img"></div>
+      </section>
+      <!-- //section5 -->
+
+      <section id="section6" class="item">
+        <span class="item_num">06</span>
+        <div class="item_img"></div>
+      </section>
+      <!-- //section6 -->
+
+      <section id="section7" class="item">
+        <span class="item_num">07</span>
+        <div class="item_img"></div>
+      </section>
+      <!-- //section7 -->
+
+      <section id="section8" class="item">
+        <span class="item_num">08</span>
+        <div class="item_img"></div>
+      </section>
+      <!-- //section8 -->
+
+      <section id="section9" class="item">
+        <span class="item_num">09</span>
+        <div class="item_img"></div>
+      </section>
+      <!-- //section9 -->
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+    <script>
+      const box1 = document.querySelector("#section1 .item_img");
+      const box2 = document.querySelector("#section2 .item_img");
+      const box3 = document.querySelector("#section3 .item_img");
+      const box4 = document.querySelector("#section4 .item_img");
+      const box5 = document.querySelector("#section5 .item_img");
+      const box6 = document.querySelector("#section6 .item_img");
+      const box7 = document.querySelector("#section7 .item_img");
+      const box8 = document.querySelector("#section8 .item_img");
+
+      //01. 기본
+      // box1.style.transform = "translateX:500px";
+      gsap.to(box1, { duration: 2, x: 500, rotation: 360, borderRadius: 100 });
+
+      //02. scrollTrigger
+      gsap.to(box2, {
+        duration: 3,
+        x: 500,
+        borderRadius: 100,
+        rotation: 360,
+
+        scrollTrigger: {
+          trigger: box2,
+        },
+      });
+
+      //03. toggleAction
+      gsap.to(box3, {
+        duration: 3,
+        x: 500,
+        borderRadius: 100,
+        rotation: 360,
+
+        scrollTrigger: {
+          trigger: box3,
+          toggleActions: "play pause play reset",
+          // onEnter , onLeave, onEnterBack, onLeaveBack
+          // 영역에 진입할때(아래스크롤), 벗어날때(아래스크롤), 영역으로 뒤로 돌아올떄(위스크롤), 영역을 완전히 벗어날때(위스크롤)
+          markers: false,
+        },
+      });
+
+      //04. start, end
+      gsap.to(box4, {
+        duration: 2,
+        x: 500,
+        borderRadius: 100,
+        rotation: 360,
+
+        scrollTrigger: {
+          trigger: box4,
+          start: "top 50%", // top - 요소의 위치, 50% -스크롤의 위치
+          end: "bottom 20%",
+
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      //05. scrub
+      gsap.to(box5, {
+        duration: 2,
+        x: 500,
+        borderRadius: 100,
+        rotation: 360,
+
+        scrollTrigger: {
+          trigger: box5,
+          start: "top 50%",
+          end: "bottom 20%",
+          scrub: true,
+        },
+      });
+
+      //06.pin
+      gsap.to(box6, {
+        duration: 2,
+        x: 500,
+        borderRadius: 100,
+        rotation: 360,
+
+        scrollTrigger: {
+          trigger: box6,
+          start: "top 50%",
+          end: "bottom 200px",
+          scrub: true,
+          pin: true,
+          // markers: true,
+        },
+      });
+
+      //07. toggleClass
+      gsap.to(box7, {
+        duration: 2,
+        x: 500,
+        borderRadius: 100,
+        rotation: 360,
+
+        scrollTrigger: {
+          trigger: box7,
+          start: "top 50%",
+          end: "bottom 200px",
+          scrub: true,
+          toggleClass: "active",
+          markers: true,
+        },
+      });
+    </script>
+  </body>
+</html>
